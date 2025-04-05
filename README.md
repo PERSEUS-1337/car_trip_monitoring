@@ -51,6 +51,33 @@ A mobile application built using **Flutter** and **Supabase** to help company dr
 - Schema-driven development
 - Row-level security (RLS)
 
+### Platform-Specific Configurations
+
+#### iOS & macOS
+1. **Network Permissions**
+   - Add to `ios/Runner/Info.plist`:
+     ```xml
+     <key>NSAppTransportSecurity</key>
+     <dict>
+       <key>NSAllowsArbitraryLoads</key>
+       <true/>
+     </dict>
+     ```
+   - Add to `macos/Runner/DebugProfile.entitlements` and `macos/Runner/Release.entitlements`:
+     ```xml
+     <key>com.apple.security.network.client</key>
+     <true/>
+     ```
+
+2. **iOS Entitlements**
+   - Add to `ios/Runner/Runner.entitlements`:
+     ```xml
+     <key>com.apple.security.network.client</key>
+     <true/>
+     ```
+
+> ⚠️ **Note**: These configurations are necessary for allowing network connections to Supabase. Without them, you may encounter connection issues on iOS and macOS platforms.
+
 ---
 
 ## 🧪 4. Proposed Implementation Phases
